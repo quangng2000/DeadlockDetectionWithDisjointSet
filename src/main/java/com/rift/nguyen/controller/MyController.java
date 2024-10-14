@@ -15,7 +15,7 @@ public class MyController {
     @Autowired
     private MyService myService; // Ensure proper annotation for field injection
 
-    @GetMapping("/deadlock")
+    @GetMapping("/deadlockUF")
     public String cycleController() {
         // Assuming myService has a method that checks for cycles
     	

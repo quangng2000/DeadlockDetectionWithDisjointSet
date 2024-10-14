@@ -11,16 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyService {
 	
-	ThreadDumpParser TDP = new ThreadDumpParser();
-	
-	
-	
 	public boolean DetectDreadLockUF(List<String> threadDump) {
 		
-		Map<String, Set<String>> graph = TDP.parseThreadDump(threadDump);
+		Map<String, Set<String>> graph = ThreadDumpParser.parseThreadDump(threadDump);
 		
 		
-		int[][] edges = TDP.convertGraphToEdges(graph);
+		int[][] edges = ThreadDumpParser.convertGraphToEdges(graph);
 		
 		UnionFind uf = new UnionFind(edges.length);
 		

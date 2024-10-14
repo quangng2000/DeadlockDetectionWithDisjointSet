@@ -8,7 +8,7 @@ public class ThreadDumpParser {
     private static final Pattern LOCK_HELD_PATTERN = Pattern.compile("- locked <(0x[a-fA-F0-9]+)>.*");
     private static final Pattern WAITING_FOR_LOCK_PATTERN = Pattern.compile("- waiting to lock <(0x[a-fA-F0-9]+)>.*owned by \"([^\"]+)\"");
 
-    public Map<String, Set<String>> parseThreadDump(List<String> threadDump) {
+    public static Map<String, Set<String>> parseThreadDump(List<String> threadDump) {
         Map<String, String> threadHoldingLock = new HashMap<>();  // Maps lock -> thread holding it
         Map<String, Set<String>> waitingGraph = new HashMap<>();  // Graph of thread dependencies
         String currentThread = null;
@@ -41,7 +41,7 @@ public class ThreadDumpParser {
         return waitingGraph;
     }
     
-    public int[][] convertGraphToEdges(Map<String, Set<String>> graph) {
+    public static int[][] convertGraphToEdges(Map<String, Set<String>> graph) {
         // Step 1: Assign index to each thread
         Map<String, Integer> threadIndexMap = new HashMap<>();
         int index = 0;
